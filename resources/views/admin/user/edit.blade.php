@@ -31,8 +31,7 @@
                                     method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Tên <span
-                                            class="text-danger">*</span></label>
+                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control"
                                             value="{{ $users->name }}">
                                         @error('name')
@@ -43,8 +42,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">E-Mail <span
-                                            class="text-danger">*</span></label>
+                                        <label class="form-label">E-Mail <span class="text-danger">*</span></label>
                                         <div>
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ $users->email }}" parsley-type="email">
@@ -56,8 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Mật khẩu <span
-                                            class="text-danger">*</span></label>
+                                        <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
                                         <div>
                                             <input type="password" name="password" id="pass2" class="form-control"
                                                 value="{{ $users->password }}">
@@ -69,52 +66,24 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Số điện thoại <span
-                                            class="text-danger">*</span></label>
-                                        <div>
-                                            <input data-parsley-type="number" name="phone_number" type="text"
-                                                class="form-control" value="{{ $users->phone_number }}">
-                                            @error('phone_number')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ngày sinh <span
-                                            class="text-danger">*</span></label>
-                                        <div>
-                                            <input class="form-control" name="date_of_birthday" type="date"
-                                                value="{{ $users->date_of_birthday }}" id="example-date-input">
-                                            @error('date_of_birthday')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ảnh <span
-                                            class="text-danger">*</span></label>
-                                        <div>
-                                            <div class="form-file">
-                                                <input type="file" name="images" class="form-file-input form-control">
-                                                @if (isset($users) && $users->avatar)
-                                                    <img src="{{ asset($users->avatar ? '' . Storage::url($users->avatar) : $users->name) }}"
-                                                        alt="{{ $users->name }}" width="100">
-                                                @endif
-                                                @error('images')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
+                                        <label class="form-label">Vai trò <span class="text-danger">*</span></label>
+                                        <select name="role" class="form-select" id="validationCustom04">
+                                            <option selected value="">Chọn trạng thái</option>
+                                            <option value="ADMIN"
+                                                {{ isset($users) && $users->role === 'ADMIN' ? 'selected' : '' }}>
+                                                Admin</option>
+                                            <option value="AGENCY"
+                                                {{ isset($users) && $users->role === 'AGENCY' ? 'selected' : '' }}>
+                                                Agency</option>
+                                        </select>
+                                        @error('role')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
                                             </div>
-                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span
-                                            class="text-danger">*</span></label>
+                                        <label class="form-label">Trạng thái </label>
                                         <select name="status" class="form-select" id="validationCustom04">
                                             <option selected value="">Chọn trạng thái</option>
                                             <option value="1"
@@ -126,14 +95,10 @@
                                             <option value="0"
                                                 {{ isset($users) && $users->status === 0 ? 'selected' : '' }}>
                                                 Khóa</option>
-                                            </select>
-                                            @error('status')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
+                                        </select>
                                     </div>
-                                    <input type="text" name="updated_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="updated_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

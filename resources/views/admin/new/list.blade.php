@@ -52,7 +52,7 @@
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Ảnh</th>
                                                 <th scope="col">Tiêu đề</th>
-                                                <th scope="col">Ngày đăng</th>
+                                                <th scope="col">Danh mục</th>
                                                 <th scope="col">Người đăng</th>
                                                 <th scope="col">Nội dung ngắn</th>
                                                 <th scope="col">Trạng thái</th>
@@ -65,40 +65,37 @@
                                                     <th scope="row" class="text-primary">{{ 'NE000' . $new->id }}</th>
                                                     <td>
                                                         <div>
-                                                            <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}"
+                                                            <img src="{{ asset($new->images) ? '' . Storage::url($new->images) : $new->name }}"
                                                                 alt="news" class="avatar-xs rounded-circle me-2">
                                                             {{ $new->name }}
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        @if ($new->title)
-                                                            <span>{{ $new->title }}</span>
+                                                        @if ($new->name)
+                                                            <span>{{ $new->name }}</span>
                                                         @else
-                                                            <span>Không có tiêu đề</span>
+                                                            <span></span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($new->post_date)
-                                                            <span>{{ $format = date('d-m-Y', strtotime($new->post_date)) }}</span>
+                                                        @if ($new->category)
+                                                            <span>{{ $new->category->name }}</span>
                                                         @else
-                                                            <span>Không có ngày đăng</span>
+                                                            <span></span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($new->user)
-                                                            <span>{{ $new->user->name }}</span>
-                                                        @else
-                                                            <span>Không có người đăng</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($new->sort_content)
+                                                        @if ($new->short_description)
                                                             @php
-                                                                $limitedMessage = Str::limit($new->sort_content, 20, '...');
+                                                                $limitedMessage = Str::limit(
+                                                                    $new->short_description,
+                                                                    20,
+                                                                    '...',
+                                                                );
                                                             @endphp
                                                             <span>{!! $limitedMessage !!}</span>
                                                         @else
-                                                            <span>Không có nội dung ngắn</span>
+                                                            <span></span>
                                                         @endif
                                                     </td>
                                                     <td>

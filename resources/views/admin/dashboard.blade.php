@@ -43,9 +43,9 @@
                                         <img src="{{ asset('admin/assets/images/services-icon/01.png') }}" alt="">
                                     </div>
                                     <h5 class="font-size-16 text-uppercase text-white-50">Liên hệ</h5>
-                                    <h4 class="fw-medium font-size-24">{{ $countContactToday }}</h4>
+                                    {{-- <h4 class="fw-medium font-size-24">{{ $countContactToday }}</h4> --}}
                                     <div class="mini-stat-label bg-success">
-                                        @php
+                                        {{-- @php
                                             $previousDayCount = DB::table('contact')
                                                 ->whereDate('created_at', Carbon\Carbon::parse(today())->subDay())
                                                 ->count();
@@ -57,7 +57,7 @@
                                             <p class="mb-0">{{ number_format(abs($percentChange), 2) }}%</p>
                                         @else
                                             <p class="mb-0">No change</p>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -79,7 +79,7 @@
                                         <img src="{{ asset('admin/assets/images/services-icon/02.png') }}" alt="">
                                     </div>
                                     <h5 class="font-size-16 text-uppercase text-white-50">Chưa liên hệ</h5>
-                                    <h4 class="fw-medium font-size-24">{{ $totalNoContact }}</h4>
+                                    {{-- <h4 class="fw-medium font-size-24">{{ $totalNoContact }}</h4> --}}
                                     {{-- <div class="mini-stat-label bg-danger">
                                         <p class="mb-0">- 28%</p>
                                     </div> --}}
@@ -103,7 +103,7 @@
                                         <img src="{{ asset('admin/assets/images/services-icon/03.png') }}" alt="">
                                     </div>
                                     <h5 class="font-size-16 text-uppercase text-white-50">Tổng liên hệ</h5>
-                                    <h4 class="fw-medium font-size-24">{{ $totalContactsMonth }}
+                                    {{-- <h4 class="fw-medium font-size-24">{{ $totalContactsMonth }} --}}
                                     </h4>
                                 </div>
                                 <div class="pt-2">
@@ -112,7 +112,7 @@
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
 
-                                    @php
+                                    {{-- @php
                                         $currentMonth = date('m');
                                         $currentYear = date('Y');
                                         $nextMonth = date('m', strtotime('+1 month'));
@@ -125,14 +125,14 @@
                                         @elseif ($currentMonth != $nextMonth && $currentYear != $currentYear)
                                             {{ $nextMonth }}/{{ $currentYear }}
                                         @endif
-                                    </p>
+                                    </p> --}}
 
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @php
+                    {{-- @php
                         $currentMonthCustomers = DB::table('customers')
                             ->whereMonth('created_at', '=', date('m'))
                             ->whereYear('created_at', '=', date('Y'))
@@ -148,7 +148,7 @@
                         if ($previousMonthCustomers != 0) {
                             $percentageChange = (($currentMonthCustomers - $previousMonthCustomers) / $previousMonthCustomers) * 100;
                         }
-                    @endphp
+                    @endphp --}}
 
                     <div class="col-xl-3 col-md-6">
                         <div class="card mini-stat bg-primary text-white">
@@ -158,11 +158,11 @@
                                         <img src="{{ asset('admin/assets/images/services-icon/04.png') }}" alt="">
                                     </div>
                                     <h5 class="font-size-16 text-uppercase text-white-50">Khách hàng</h5>
-                                    <h4 class="fw-medium font-size-24">{{ $currentMonthCustomers }} <i
-                                            class="mdi mdi-arrow-up text-success ms-2"></i>
+                                    {{-- <h4 class="fw-medium font-size-24">{{ $currentMonthCustomers }} <i --}}
+                                    class="mdi mdi-arrow-up text-success ms-2"></i>
                                     </h4>
                                     <div class="mini-stat-label bg-success">
-                                        <p class="mb-0">
+                                        {{-- <p class="mb-0">
                                             @if ($previousMonthCustomers != 0)
                                                 @if ($percentageChange > 0)
                                                     +{{ round($percentageChange, 2) }}%
@@ -175,7 +175,7 @@
                                                 N/A
                                             @endif
 
-                                        </p>
+                                        </p> --}}
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -184,7 +184,7 @@
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
 
-                                    @php
+                                    {{-- @php
                                         $currentMonth = date('m');
                                         $currentYear = date('Y');
                                         $nextMonth = date('m', strtotime('+1 month'));
@@ -197,7 +197,7 @@
                                         @elseif ($currentMonth != $nextMonth && $currentYear != $currentYear)
                                             {{ $nextMonth }}/{{ $currentYear }}
                                         @endif
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </div>

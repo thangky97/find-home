@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách liên hệ')
+@section('title', 'Danh mục bài viết')
 
 @section('content')
 
@@ -44,58 +44,45 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách liên hệ</h4>
+                                <h4 class="card-title mb-4">Danh mục bài viết</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Tên khách hàng</th>
-                                                <th scope="col">Số điện thoại</th>
-                                                <th scope="col">Nội dung</th>
+                                                <th scope="col">Tên </th>
+                                                <th scope="col">Mô tả</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($contact as $item)
+                                            @forelse ($category_new as $cate)
                                                 <tr>
-                                                    <th scope="row" class="text-primary">{{ 'CT000' . $item->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ $cate->id }}
+                                                    </th>
                                                     <td>
-                                                        @if ($item->contact_name)
-                                                            <span>{{ $item->contact_name }}</span>
-                                                        @else
-                                                            <span>Không có tên</span>
-                                                        @endif
+                                                        {{ $cate->name }}
                                                     </td>
                                                     <td>
-                                                        @if ($item->phone_number)
-                                                            <span>{{ $item->phone_number }}</span>
-                                                        @else
-                                                            <span>Không có sđt</span>
-                                                        @endif
+                                                        @php
+                                                            $limitedMessage = Str::limit($cate->description, 20, '...');
+                                                        @endphp
+                                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                     </td>
                                                     <td>
-                                                        @if ($item->message)
-                                                            @php
-                                                                $limitedMessage = Str::limit($item->message, 20, '...');
-                                                            @endphp
-                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                                        @if ($cate && $cate->status === 1)
+                                                            <span class="badge bg-success">Hoạt động</span>
+                                                        @elseif ($cate && $cate->status === 2)
+                                                            <span class="badge bg-warning">Không hoạt động</span>
                                                         @else
-                                                            <span>Không có lời nhắn</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($item && $item->status === 1)
-                                                            <span class="badge bg-success">Đã tư vấn</span>
-                                                        @else
-                                                            <span class="badge bg-warning">Chưa tư vấn</span>
+                                                            <span class="badge bg-danger">Khóa</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Contact_Edit', $item->id) }}"
-                                                                class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                                            <a href="{{ route('route_BackEnd_Category_News_Edit', $cate->id) }}"
+                                                                class="btn btn-primary btn-sm">Sửa</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -108,7 +95,7 @@
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{ $contact->links() }}
+                                    {{ $category_new->links() }}
                                 </div>
                             </div>
                         </div>

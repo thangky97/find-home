@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách dịch vụ')
+@section('title', 'Danh sách sản phẩm')
 
 @section('content')
 
@@ -44,19 +44,16 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách quản trị viên</h4>
+                                <h4 class="card-title mb-4">Danh sách sản phẩm</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Tên dịch vụ</th>
-                                                <th scope="col">Mức phí</th>
-                                                <th scope="col">Thời hạn</th>
-                                                <th scope="col">Giá BV tính mạng</th>
-                                                <th scope="col">BH tai nạn toàn diện</th>
-                                                <th scope="col">BH bệnh hiểm nghèo</th>
-                                                <th scope="col">BH chăm sóc sức khỏe</th>
+                                                <th scope="col">Tên </th>
+                                                <th scope="col">Giá</th>
+                                                <th scope="col">Thuộc tính</th>
+                                                <th scope="col">Địa chỉ</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
@@ -64,60 +61,31 @@
                                         <tbody>
                                             @forelse ($services as $service)
                                                 <tr>
-                                                    <th scope="row" class="text-primary">{{ 'DV000' . $service->id }}
+                                                    <th scope="row" class="text-primary">{{ $service->id }}
                                                     </th>
                                                     <td>
-                                                        <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->service_name }}"
+                                                        <img src="{{ asset($service->images) ? '' . Storage::url($service->images) : $service->name }}"
                                                             alt="Dịch vụ" class="avatar-xs rounded-circle me-2">
-                                                        {{ $service->service_name }}
+                                                        {{ $service->name }}
                                                     </td>
                                                     <td>
-                                                        @if ($service->charges)
-                                                            <span>{{ $service->charges }}</span>
-                                                        @else
-                                                            <span>Không có phí</span>
-                                                        @endif
+                                                        {{ $service->price }}
                                                     </td>
                                                     <td>
-                                                        @if ($service->duration)
-                                                            @php
-                                                                $limitedMessage = Str::limit($service->duration, 20, '...');
-                                                            @endphp
-                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
-                                                        @else
-                                                            <span>Không có thời hạn</span>
-                                                        @endif
+                                                        <?php $property_ids = explode(',', $service->attribute_id); ?>
+                                                        @foreach ($listAttribute as $att)
+                                                            @foreach ($property_ids as $inx => $pro_id)
+                                                                @if ($pro_id == $att->id)
+                                                                    {{ $inx > 0 ? ', ' . $att->name : $att->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
                                                     </td>
                                                     <td>
-                                                        @if ($service->face_protect_life)
-                                                            <span>{{ $service->face_protect_life }}</span>
-                                                        @else
-                                                            <span>No</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($service->comprehensive_accident_insurance)
-                                                            <span>{{ $service->comprehensive_accident_insurance }}</span>
-                                                        @else
-                                                            <span>No tai nạn</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($service->critical_illness_insurance)
-                                                            <span>{{ $service->critical_illness_insurance }}</span>
-                                                        @else
-                                                            <span>No hiểm nghèo</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($service->health_care_insurance)
-                                                            @php
-                                                                $limitedMessage = Str::limit($service->health_care_insurance, 20, '...');
-                                                            @endphp
-                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
-                                                        @else
-                                                            <span>No sức khỏe</span>
-                                                        @endif
+                                                        @php
+                                                            $limitedMessage = Str::limit($service->address, 20, '...');
+                                                        @endphp
+                                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                     </td>
                                                     <td>
                                                         @if ($service && $service->status === 1)
@@ -130,8 +98,8 @@
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Services_Edit', $service->id) }}"
-                                                                class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                                            <a href="{{ route('route_BackEnd_Products_Edit', $service->id) }}"
+                                                                class="btn btn-primary btn-sm">Sửa</a>
                                                         </div>
                                                     </td>
                                                 </tr>

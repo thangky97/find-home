@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm câu hỏi & câu trả lời')
+@section('title', 'Thêm danh mục')
 
 @section('content')
 
@@ -24,31 +24,35 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Thêm câu hỏi & câu trả lời</h4>
+                                <h4 class="card-title mb-4">Thêm danh mục</h4>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Câu hỏi <span class="text-danger">*</span></label>
-                                        <input type="text" name="title" class="form-control"
-                                            value="{{ old('title', isset($request['title']) ? $request['title'] : '') }}">
-                                        @error('title')
+                                        <label class="form-label">Tên danh mục <span class="text-danger">*</span></label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ old('name', isset($request['name']) ? $request['name'] : '') }}">
+                                        @error('name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3">
-                                        <label class="form-label">Câu trả lời <span class="text-danger">*</span></label>
-                                        <textarea name="content" id="" class="form-control" rows="10">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea>
-                                        @error('content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
-                                    </div>
+                                        <label class="form-label">Mô tả</label>
+                                        <div>
+                                            <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', isset($request['description']) ? $request['description'] : '') }}</textarea>
 
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Trạng thái</label>
+                                        <select name="status" class="form-select" id="validationCustom04">
+                                            <option selected value="1">Hoạt động</option>
+                                            <option value="2">Không hoạt động</option>
+                                            <option value="0">Khóa</option>
+                                        </select>
+                                    </div>
                                     <input type="text" name="created_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
@@ -56,7 +60,7 @@
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                 Thêm mới
                                             </button>
-                                            <a href="{{ route('route_BackEnd_Ask_Question_List') }}"
+                                            <a href="{{ route('route_BackEnd_Category_News_List') }}"
                                                 class="btn btn-secondary waves-effect">Quay lại</a>
                                         </div>
                                     </div>

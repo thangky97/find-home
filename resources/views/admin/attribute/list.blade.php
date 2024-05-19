@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách khách hàng sử dụng')
+@section('title', 'Danh sách thuộc tính')
 
 @section('content')
 
@@ -44,40 +44,36 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách KH sử dụng</h4>
+                                <h4 class="card-title mb-4">Danh sách thuộc tính</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Tên khách hàng sử dụng</th>
-                                                <th scope="col">Công việc</th>
+                                                <th scope="col">Tên </th>
+                                                <th scope="col">Mô tả</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($customers_use as $use)
+                                            @forelse ($attributes as $att)
                                                 <tr>
-                                                    <th scope="row" class="text-primary">{{ 'KHU000' . $use->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ $att->id }}
+                                                    </th>
                                                     <td>
-                                                        <div>
-                                                            <img src="{{ asset($use->customer_photo) ? '' . Storage::url($use->customer_photo) : $use->customer_name }}"
-                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
-                                                            {{ $use->customer_name }}
-                                                        </div>
+                                                        {{ $att->name }}
                                                     </td>
                                                     <td>
-                                                        @if ($use->job)
-                                                            <span>{{ $use->job }}</span>
-                                                        @else
-                                                            <span>Không có công việc</span>
-                                                        @endif
+                                                        @php
+                                                            $limitedMessage = Str::limit($att->description, 20, '...');
+                                                        @endphp
+                                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                     </td>
                                                     <td>
-                                                        @if ($use && $use->status === 1)
+                                                        @if ($att && $att->status === 1)
                                                             <span class="badge bg-success">Hoạt động</span>
-                                                        @elseif ($use && $use->status === 2)
+                                                        @elseif ($att && $att->status === 2)
                                                             <span class="badge bg-warning">Không hoạt động</span>
                                                         @else
                                                             <span class="badge bg-danger">Khóa</span>
@@ -85,8 +81,8 @@
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Customers_Use_Edit', $use->id) }}"
-                                                                class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                                            <a href="{{ route('route_BackEnd_Attribute_Edit', $att->id) }}"
+                                                                class="btn btn-primary btn-sm">Sửa</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -99,7 +95,7 @@
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{ $customers_use->links() }}
+                                    {{ $attributes->links() }}
                                 </div>
                             </div>
                         </div>

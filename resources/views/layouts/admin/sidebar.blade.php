@@ -15,42 +15,6 @@
                     </a>
                 </li>
 
-                <li class="menu-title">Quản lý hệ thống</li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-cogs"></i>
-                        <span>Quản lý hệ thống</span>
-                    </a>
-
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('route_BackEnd_Setting_Home_List') }}">Nội dung hệ thống</a></li>
-                        <li><a href="javascript: void(0);" class="has-arrow">Banner</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('route_BackEnd_Banner_List') }}">Danh sách banner</a></li>
-                                <li><a href="{{ route('route_BackEnd_Banner_Create') }}">Tạo mới</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="javascript: void(0);" class="has-arrow">Câu hỏi thường gặp</a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('route_BackEnd_Ask_Question_List') }}">Danh sách câu hỏi</a></li>
-                                <li><a href="{{ route('route_BackEnd_Ask_Question_Create') }}">Tạo mới</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="javascript: void(0);" class="has-arrow">KH sử dụng</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('route_BackEnd_Customers_Use_List') }}">Danh sách KHSD</a></li>
-                                <li><a href="{{ route('route_BackEnd_Customers_Use_Create') }}">Tạo mới</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#!">Đối tác
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
                 <li class="menu-title">Người dùng</li>
 
                 <li>
@@ -75,40 +39,28 @@
                     </ul>
                 </li>
 
-                <li class="menu-title">Bảo hiểm</li>
+                <li class="menu-title">Sản phẩm</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fab fa-shopify"></i>
-                        <span>Dịch vụ</span>
+                        <span>Sản phẩm</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('route_BackEnd_Services_List') }}">Danh sách dịch vụ</a></li>
-                        <li><a href="{{ route('route_BackEnd_Services_Create') }}">Tạo mới</a></li>
+                        <li><a href="{{ route('route_BackEnd_Products_List') }}">Danh sách sản phẩm</a></li>
+                        <li><a href="{{ route('route_BackEnd_Products_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-space-shuttle"></i>
-                        <span>Dịch vụ bảo hiểm</span>
+                        <span>Thuộc tính</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('route_BackEnd_Insurance_Services_List') }}">Danh sách dịch vụ bảo
-                                hiểm</a></li>
-                        <li><a href="{{ route('route_BackEnd_Insurance_Services_Create') }}">Tạo mới</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-title">Chăm sóc khách hàng</li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-phone-ring"></i>
-                        <span>Liên hệ</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('route_BackEnd_Contact_List') }}">Danh sách liên hệ</a></li>
+                        <li><a href="{{ route('route_BackEnd_Attribute_List') }}">Danh sách thuộc tính
+                            </a></li>
+                        <li><a href="{{ route('route_BackEnd_Attribute_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 
@@ -122,6 +74,17 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('route_BackEnd_News_List') }}">Danh sách bài viết</a></li>
                         <li><a href="{{ route('route_BackEnd_News_Create') }}">Tạo mới</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ti-archive"></i>
+                        <span>Danh mục bài viết</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('route_BackEnd_Category_News_List') }}">Danh mục bài viết</a></li>
+                        <li><a href="{{ route('route_BackEnd_Category_News_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 

@@ -65,52 +65,22 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input data-parsley-type="number" name="phone_number" type="number"
-                                                class="form-control"
-                                                value="{{ old('phone_number', isset($request['phone_number']) ? $request['phone_number'] : '') }}">
-                                            @error('phone_number')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input class="form-control" name="date_of_birthday" type="date"
-                                                value="{{ old('date_of_birthday', isset($request['date_of_birthday']) ? $request['date_of_birthday'] : '') }}">
-                                            @error('date_of_birthday')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ảnh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <div class="form-file">
-                                                <input type="file" name="images" class="form-file-input form-control">
-                                                @if (isset($user) && $user->avatar)
-                                                    <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }}"
-                                                        width="100">
-                                                @endif
-                                                @error('images')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
+                                        <label class="form-label">Vai trò <span class="text-danger">*</span></label>
+                                        <select name="role" class="form-select" id="validationCustom04">
+                                            <option selected value="">Chọn vai trò</option>
+                                            <option value="ADMIN">Admin</option>
+                                            <option value="AGENCY">Agency</option>
+                                        </select>
+                                        @error('role')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
                                             </div>
-                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
+                                        <label class="form-label">Trạng thái </label>
                                         <select name="status" class="form-select" id="validationCustom04">
-                                            <option selected value="">Chọn trạng thái</option>
-                                            <option value="1">Hoạt động</option>
+                                            <option selected value="1">Hoạt động</option>
                                             <option value="2">Không hoạt động</option>
                                             <option value="0">Khóa</option>
                                         </select>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Sửa câu hỏi & câu trả lời')
+@section('title', 'Sửa danh mục')
 
 @section('content')
 
@@ -24,17 +24,17 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Sửa câu hỏi & câu trả lời</h4>
+                                <h4 class="card-title mb-4">Sửa danh mục</h4>
 
                                 <form class="custom-validation"
-                                    action="{{ route('route_BackEnd_Ask_Question_Update', ['id' => request()->route('id')]) }}"
+                                    action="{{ route('route_BackEnd_Category_News_Update', ['id' => request()->route('id')]) }}"
                                     method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Câu hỏi <span class="text-danger">*</span></label>
-                                        <input type="text" name="title" class="form-control"
-                                            value="{{ $questions->title }}">
-                                        @error('title')
+                                        <label class="form-label">Tên danh mục <span class="text-danger">*</span></label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ $category_new->name }}">
+                                        @error('name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
@@ -42,17 +42,30 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Câu trả lời <span class="text-danger">*</span></label>
+                                        <label class="form-label">Mô tả</label>
                                         <div>
-                                            <textarea name="content" class="form-control" rows="10" >{{ isset($questions) ? $questions->content : '' }}</textarea>
-                                            @error('content')
+                                            <textarea name="description" id="description" class="form-control" rows="3">{!! $category_new->description !!}</textarea>
+                                            @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
-
+                                    <div class="mb-3">
+                                        <label class="form-label">Trạng thái</label>
+                                        <select name="status" class="form-select" id="validationCustom04">
+                                            <option value="1"
+                                                {{ isset($category_new) && $category_new->status === 1 ? 'selected' : '' }}>
+                                                Hoạt động</option>
+                                            <option value="2"
+                                                {{ isset($category_new) && $category_new->status === 2 ? 'selected' : '' }}>
+                                                Không hoạt động</option>
+                                            <option value="0"
+                                                {{ isset($category_new) && $category_new->status === 0 ? 'selected' : '' }}>
+                                                Khóa</option>
+                                        </select>
+                                    </div>
                                     <input type="text" name="updated_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
@@ -60,7 +73,7 @@
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                 Cập nhật
                                             </button>
-                                            <a href="{{ route('route_BackEnd_Ask_Question_List') }}"
+                                            <a href="{{ route('route_BackEnd_Category_News_List') }}"
                                                 class="btn btn-secondary waves-effect">Quay lại</a>
                                         </div>
                                     </div>

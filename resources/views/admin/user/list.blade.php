@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách quản trị')
+@section('title', 'Danh sách quản trị viên')
 
 @section('content')
 
@@ -52,8 +52,7 @@
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Tên</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Số điện thoại</th>
-                                                <th scope="col">Ngày sinh</th>
+                                                <th scope="col">Vai trò</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
@@ -61,36 +60,13 @@
                                         <tbody>
                                             @forelse ($users as $user)
                                                 <tr>
-                                                    {{-- <th scope="row">{{ 'US' . $user->id }}</th> --}}
-                                                    <th scope="row" class="text-primary">{{ 'AD000' . $user->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ $user->id }}</th>
                                                     <td>
-                                                        <div>
-                                                            <img src="{{ asset($user->avatar) ? '' . Storage::url($user->avatar) : $user->name }}"
-                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
-                                                            {{ $user->name }}
-                                                        </div>
+                                                        {{ $user->name }}
                                                     </td>
-                                                    <td>
-                                                        @if ($user->email)
-                                                            <span>{{ $user->email }}</span>
-                                                        @else
-                                                            <span>Không có email</span>
-                                                        @endif
+                                                    <td>{{ $user->email }}
                                                     </td>
-                                                    <td>
-                                                        @if ($user->phone_number)
-                                                            <span>{{ $user->phone_number }}</span>
-                                                        @else
-                                                            <span>Không có số điện thoại</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($user->date_of_birthday)
-                                                            <span>{{ $format = date("d-m-Y",strtotime($user->date_of_birthday)) }}</span>
-                                                        @else
-                                                            <span>Không có ngày sinh</span>
-                                                        @endif
-                                                    </td>
+                                                    <td>{{ $user->role }} </td>
                                                     <td>
                                                         @if ($user && $user->status === 1)
                                                             <span class="badge bg-success">Hoạt động</span>

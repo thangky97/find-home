@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('images');
             $table->text('address');
-            $table->number('attribute_id');
+            $table->integer('attribute_id');
             $table->text('short_description')->nullable();
             $table->text('description');
             $table->softDeletes();

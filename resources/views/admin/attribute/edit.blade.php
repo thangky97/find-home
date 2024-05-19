@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Sửa liên hệ')
+@section('title', 'Sửa thuộc tính')
 
 @section('content')
 
@@ -24,17 +24,17 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Sửa liên hệ</h4>
+                                <h4 class="card-title mb-4">Sửa thuộc tính</h4>
 
                                 <form class="custom-validation"
-                                    action="{{ route('route_BackEnd_Contact_Update', ['id' => request()->route('id')]) }}"
+                                    action="{{ route('route_BackEnd_Attribute_Update', ['id' => request()->route('id')]) }}"
                                     method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Tên khách hàng </label>
-                                        <input type="text" name="contact_name" class="form-control"
-                                            value="{{ $contact->contact_name }}" disabled style="background: #d8d5d5">
-                                        @error('contact_name')
+                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ $services->name }}">
+                                        @error('name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
@@ -42,45 +42,29 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                        <label class="form-label">Mô tả ngắn</label>
                                         <div>
-                                            <input data-parsley-type="number" name="phone_number" type="text"
-                                                class="form-control" value="{{ $contact->phone_number }}" disabled style="background: #d8d5d5">
-                                            @error('phone_number')
+                                            <textarea name="description" id="description" class="form-control" rows="3">{!! $services->description !!}</textarea>
+                                            @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="mb-3">
-                                        <label class="form-label">Lời nhắn <span class="text-danger">*</span></label>
-                                        <div>
-                                            <textarea name="message" id="" class="form-control" rows="3" disabled style="background: #d8d5d5">{{ $contact->message }}</textarea>
-                                            @error('message')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
+                                        <label class="form-label">Trạng thái</label>
                                         <select name="status" class="form-select" id="validationCustom04">
                                             <option value="1"
-                                                {{ isset($contact) && $contact->status === 1 ? 'selected' : '' }}>
-                                                Đã liên hệ</option>
+                                                {{ isset($services) && $services->status === 1 ? 'selected' : '' }}>
+                                                Hoạt động</option>
+                                            <option value="2"
+                                                {{ isset($services) && $services->status === 2 ? 'selected' : '' }}>
+                                                Không hoạt động</option>
                                             <option value="0"
-                                                {{ isset($contact) && $contact->status === 0 ? 'selected' : '' }}>
-                                                Chưa liên hệ</option>
+                                                {{ isset($services) && $services->status === 0 ? 'selected' : '' }}>
+                                                Khóa</option>
                                         </select>
-                                        @error('status')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
                                     </div>
                                     <input type="text" name="updated_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
@@ -89,7 +73,7 @@
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                 Cập nhật
                                             </button>
-                                            <a href="{{ route('route_BackEnd_Contact_List') }}"
+                                            <a href="{{ route('route_BackEnd_Attribute_List') }}"
                                                 class="btn btn-secondary waves-effect">Quay lại</a>
                                         </div>
                                     </div>

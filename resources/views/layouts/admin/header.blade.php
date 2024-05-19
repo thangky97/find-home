@@ -1,12 +1,3 @@
-<?php
-$notifications = DB::table('contact')
-    ->orderby('id', 'desc')
-    ->paginate(6);
-$notificationCount = DB::table('contact')
-    ->whereDate('created_at', today())
-    ->count();
-?>
-
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
@@ -80,20 +71,20 @@ $notificationCount = DB::table('contact')
                     id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <i class="mdi mdi-bell-outline"></i>
-                    <span class="badge bg-danger rounded-pill" id="notification-count">{{ $notificationCount }}</span>
+                    <span class="badge bg-danger rounded-pill" id="notification-count"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                     aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h5 class="m-0 font-size-16">Thông báo ({{ $notificationCount }})</h5>
+                                <h5 class="m-0 font-size-16">Thông báo</h5>
                             </div>
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
                         <div id="notification-list">
-                            @foreach ($notifications as $notification)
+                            {{-- @foreach ($notifications as $notification)
                                 <a href="#" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
@@ -131,7 +122,7 @@ $notificationCount = DB::table('contact')
                                         });
                                     </script>
                                 @endif
-                            @endforeach
+                            @endforeach --}}
 
                         </div>
                     </div>
@@ -149,21 +140,20 @@ $notificationCount = DB::table('contact')
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user"
-                        src="{{ asset(Auth::user()->avatar) ? '' . Storage::url(Auth::user()->avatar) : Auth::user()->name }}"
-                        alt="{{ Auth::user()->name }}">
+                    <img class="rounded-circle header-profile-user">
+                    {{-- src="{{ asset(Auth::user()->avatar) ? '' . Storage::url(Auth::user()->avatar) : Auth::user()->name }}"
+                        alt="{{ Auth::user()->name }}"> --}}
                     {{-- @if (Auth::check())
                         <p>{{ Auth::user()->name }}</p>
                     @endif --}}
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item"
-                        href="{{ route('route_BackEnd_Profile_Edit', ['id' => Auth::user()->id]) }}"><i
-                            class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Hồ sơ</a>
+                    <a class="dropdown-item" {{-- href="{{ route('route_BackEnd_Profile_Edit', ['id' => Auth::user()->id]) }}"><i --}}
+                        class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Hồ sơ</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
-                            class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Đăng xuất</a>
+                    {{-- <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
+                            class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Đăng xuất</a> --}}
                 </div>
             </div>
 
@@ -176,28 +166,3 @@ $notificationCount = DB::table('contact')
         </div>
     </div>
 </header>
-
-
-{{-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var notificationIcon = document.getElementById("page-header-notifications-dropdown");
-        var notificationCount = document.getElementById("notification-count");
-        var notificationList = document.getElementById("notification-list");
-
-        notificationIcon.addEventListener("click", function() {
-            // Gọi Ajax request để đánh dấu thông báo đã xem
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "{{ route('notifications.markAsRead') }}");
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send();
-
-            // Cập nhật số lượng thông báo
-            notificationCount.innerText = "0";
-
-            // Xóa tất cả các thông báo trong danh sách
-            while (notificationList.firstChild) {
-                notificationList.removeChild(notificationList.firstChild);
-            }
-        });
-    });
-</script> --}}

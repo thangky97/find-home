@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->string('images');
-            $table->number('cate_new_id');
-            $table->number('user_id');
+            $table->integer('cate_new_id');
+            $table->integer('user_id');
             $table->text('short_description')->nullable();
             $table->text('description');
             $table->softDeletes();
