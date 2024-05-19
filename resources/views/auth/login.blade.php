@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Login | DAI-ICHI - Admin & Dashboard</title>
+    <title>Login | Find home - Admin & Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Design by Thang Developer" name="description">
     <meta content="Themesbrand" name="author">
@@ -34,7 +34,7 @@
                         <div class="bg-primary">
                             <div class="text-primary text-center p-4">
                                 <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50">Đăng nhập tiếp tục vào DAI-ICHI.</p>
+                                <p class="text-white-50">Đăng nhập tiếp tục vào Find home.</p>
                                 <a href="{{ route('getLogin') }}" class="logo logo-admin">
                                     <img src="{{ asset('admin/assets/images/logo-sm.png') }}" height="24"
                                         alt="logo">
@@ -114,7 +114,7 @@
                         <p class="mb-0">©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> DAI-ICHI with <i class="mdi mdi-heart text-danger"></i> by Thangtv
+                            </script> Find home with <i class="mdi mdi-heart text-danger"></i> by Loc
                         </p>
                     </div>
 

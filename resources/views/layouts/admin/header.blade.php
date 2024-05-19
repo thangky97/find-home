@@ -140,20 +140,19 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user">
-                    {{-- src="{{ asset(Auth::user()->avatar) ? '' . Storage::url(Auth::user()->avatar) : Auth::user()->name }}"
-                        alt="{{ Auth::user()->name }}"> --}}
-                    {{-- @if (Auth::check())
+                    <img class="rounded-circle header-profile-user"
+                        src="{{ asset('admin/assets/images/users/user-10.jpg') }}" alt="{{ Auth::user()->name }}">
+                    @if (Auth::check())
                         <p>{{ Auth::user()->name }}</p>
-                    @endif --}}
+                    @endif
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <a class="dropdown-item" {{-- href="{{ route('route_BackEnd_Profile_Edit', ['id' => Auth::user()->id]) }}"><i --}}
                         class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Hồ sơ</a>
                     <div class="dropdown-divider"></div>
-                    {{-- <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
-                            class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Đăng xuất</a> --}}
+                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
+                            class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Đăng xuất</a>
                 </div>
             </div>
 

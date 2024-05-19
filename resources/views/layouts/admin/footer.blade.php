@@ -5,8 +5,8 @@
                 ©
                 <script>
                     document.write(new Date().getFullYear())
-                </script> Dai i-chi <span class="d-none d-sm-inline-block"> - Bảo hiểm nhân thọ <i
-                        class="mdi mdi-heart text-danger"></i> by Thangtv.</span>
+                </script> Bất động sản <span class="d-none d-sm-inline-block"> - Find home <i
+                        class="mdi mdi-heart text-danger"></i> by Loc.</span>
             </div>
         </div>
     </div>

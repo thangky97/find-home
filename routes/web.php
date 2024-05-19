@@ -33,9 +33,17 @@ Route::get('/about', function () {
     return view('client/about');
 });
 
+Route::middleware('guest')->prefix('/admin')->group(function () {
+    Route::get('/login', 'Auth\LoginController@getLogin')->name('getLogin');
+    Route::post('/login', 'Auth\LoginController@postLogin')->name('postLogin');
 
-// Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::prefix('admin')->group(function () {
+    // Route::get('/login-google', 'Client\SigninController@getLoginGoogle')->name('getLoginGoogle');
+    // Route::get('/google/callback', 'Client\SigninController@loginGoogleCallback')->name('loginGoogleCallback');
+});
+
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@getLogout'])->middleware('auth');
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('route_BackEnd_Dashboard');
 
