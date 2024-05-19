@@ -23,14 +23,14 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3',
-                'email' => 'required|email|max:50',
-                'password' => 'required|min:6',
-                'role' => 'required',
-                'images' =>
-                [
-                    'image',
-                    'max:2048',
-                ],
+            'email' => 'required|email|max:50',
+            'password' => 'required|min:6',
+            'role' => 'required',
+            'images' =>
+            [
+                'image',
+                'max:2048',
+            ],
         ];
     }
 
@@ -38,15 +38,15 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên bắt buộc nhập!',
-                'name.min' => 'Tên tối thiểu 3 ký tự!',
-                'email.required' => 'Email bắt buộc nhập!',
-                'email.email' => 'Email không đúng định dạng!',
-                'email.max' => 'Email tối đa 50 ký tự!',
-                'password.required' => 'Mật khẩu bắt buộc nhập!',
-                'password.min' => 'Mật khẩu tối thiểu 6 ký tự!',
-                'role.required' => 'Vui lòng chọn vai trò!',
-                'images.image' => 'Bắt buộc phải là ảnh!',
-                'images.max' => 'Ảnh không được lớn hơn 2MB!',
+            'name.min' => 'Tên tối thiểu 3 ký tự!',
+            'email.required' => 'Email bắt buộc nhập!',
+            'email.email' => 'Email không đúng định dạng!',
+            'email.max' => 'Email tối đa 50 ký tự!',
+            'password.required' => 'Mật khẩu bắt buộc nhập!',
+            'password.min' => 'Mật khẩu tối thiểu 6 ký tự!',
+            'role.required' => 'Vui lòng chọn vai trò!',
+            'images.image' => 'Bắt buộc phải là ảnh!',
+            'images.max' => 'Ảnh không được lớn hơn 2MB!',
         ];
     }
 }

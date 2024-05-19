@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm quản bài viết')
+@section('title', 'Thêm bài viết')
 
 @section('css')
 
@@ -28,47 +28,31 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Thêm quản bài viết</h4>
+                                <h4 class="card-title mb-4">Thêm bài viết</h4>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
-                                        <input type="text" name="title" class="form-control"
-                                            value="{{ old('title', isset($request['title']) ? $request['title'] : '') }}">
-                                        @error('title')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
-                                    </div>
-
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label">Người đăng <span class="text-danger">*</span></label>
-                                            <select name="user_id" class="form-select" id="validationCustom04">
-                                                <option selected value="">Chọn người đăng</option>
-                                                @foreach ($users as $user_post)
-                                                    <option value="{{ $user_post->id }}">{{ $user_post->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('user_id')
+                                            <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control"
+                                                value="{{ old('name', isset($request['name']) ? $request['name'] : '') }}">
+                                            @error('name')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
                                         </div>
-
                                         <div class="col-md-6">
-                                            <label class="form-label">Ngày đăng <span class="text-danger">*</span></label>
-                                            <div class="input-group" id="datepicker2">
-                                                <input name="post_date" type="date" id="input-date1"
-                                                    value="{{ old('post_date', isset($request['post_date']) ? $request['post_date'] : '') }}"
-                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
-                                                    data-inputmask-inputformat="dd/mm/yyyy">
-                                            </div>
-                                            @error('post_date')
+                                            <label class="form-label">Danh mục <span class="text-danger">*</span></label>
+                                            <select name="cate_new_id" class="form-select" id="validationCustom04">
+                                                <option selected value="">Chọn danh mục</option>
+                                                @foreach ($categoryNew as $cate)
+                                                    <option value="{{ $cate->id }}">{{ $cate->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('cate_new_id')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
@@ -78,15 +62,15 @@
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung ngắn</label>
                                         <div>
-                                            <textarea name="sort_content" id="summernote_sort_content" data-parsley-type="text" class="form-control" rows="3">{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}</textarea>
+                                            <textarea name="short_description" id="summernote_sort_content" data-parsley-type="text" class="form-control"
+                                                rows="3">{{ old('short_description', isset($request['short_description']) ? $request['short_description'] : '') }}</textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Nội dung</label>
+                                        <label class="form-label">Nội dung <span class="text-danger">*</span></label>
                                         <div>
-                                            {{-- <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea> --}}
-                                            <textarea id="summernote" name="content"></textarea>
-                                            @error('content')
+                                            <textarea id="summernote" name="description"></textarea>
+                                            @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
@@ -111,18 +95,12 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
+                                        <label class="form-label">Trạng thái </label>
                                         <select name="status" class="form-select" id="validationCustom04">
-                                            <option selected value="">Chọn trạng thái</option>
-                                            <option value="1">Hoạt động</option>
+                                            <option selected value="1">Hoạt động</option>
                                             <option value="2">Không hoạt động</option>
                                             <option value="0">Khóa</option>
                                         </select>
-                                        @error('status')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
                                     </div>
                                     <input type="text" name="created_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>

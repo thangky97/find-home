@@ -11,7 +11,7 @@ class NewsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,24 @@ class NewsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'description' => 'required',
+            'images' =>
+            [
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:2048',
+            ],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Tên bắt buộc nhập!',
+            'description.required' => 'Mô tả bắt buộc nhập!',
+            'images.image' => 'Bắt buộc phải là ảnh!',
+            'images.max' => 'Ảnh không được lớn hơn 2MB!',
         ];
     }
 }

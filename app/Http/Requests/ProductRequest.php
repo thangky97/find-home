@@ -23,15 +23,15 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-                'description' => 'required',
-                'images' =>
-                [
-                    'image',
-                    'mimes:jpeg,png,jpg',
-                    'max:2048',
-                ],
-                'address' => 'required',
-                'price' => 'required',
+            'description' => 'required',
+            'images' =>
+            [
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:2048',
+            ],
+            'address' => 'required',
+            'price' => 'required',
         ];
     }
 
@@ -39,11 +39,11 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên bắt buộc nhập!',
-                'description.required' => 'Mô tả bắt buộc nhập!',
-                'images.image' => 'Bắt buộc phải là ảnh!',
-                'images.max' => 'Ảnh không được lớn hơn 2MB!',
-                'address' => 'Vui lòng nhập địa chỉ!',
-                'price' => 'Vui lòng nhập giá!',
+            'description.required' => 'Mô tả bắt buộc nhập!',
+            'images.image' => 'Bắt buộc phải là ảnh!',
+            'images.max' => 'Ảnh không được lớn hơn 2MB!',
+            'address' => 'Vui lòng nhập địa chỉ!',
+            'price' => 'Vui lòng nhập giá!',
         ];
     }
 }

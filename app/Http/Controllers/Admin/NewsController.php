@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
+use App\Models\Category_News;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class NewsController extends Controller
@@ -40,26 +42,24 @@ class NewsController extends Controller
     public function create(Request $request)
     {
         $method_route = "route_BackEnd_News_Create";
+        $categoryNew = Category_News::where('status', 1)->get();
 
         if ($request->isMethod('post')) {
             $request->validate([
                 'name' => 'required',
                 'description' => 'required',
+                'cate_new_id' => 'required',
                 'images' =>
                 [
                     'image',
-                    'mimes:jpeg,png,jpg',
                     'max:2048',
                 ],
-                'address' => 'required',
-                'price' => 'required',
             ], [
                 'name.required' => 'Tên bắt buộc nhập!',
                 'description.required' => 'Mô tả bắt buộc nhập!',
+                'cate_new_id.required' => 'Vui lòng chọn danh mục bài biết!',
                 'images.image' => 'Bắt buộc phải là ảnh!',
                 'images.max' => 'Ảnh không được lớn hơn 2MB!',
-                'address' => 'Vui lòng nhập địa chỉ!',
-                'price' => 'Vui lòng nhập giá!',
             ], []);
 
             $params = [];
@@ -82,13 +82,14 @@ class NewsController extends Controller
                 return redirect()->route($method_route);
             }
         }
-        return view('admin.new.create');
+        return view('admin.new.create', compact('categoryNew'));
     }
 
     public function edit($id, Request $request)
     {
         $modelNews = new News();
         $news = $modelNews->loadOne($id);
+        $this->v['cate_new_id'] = DB::table('category_news')->get();
         $this->v['news'] = $news;
         return view('admin.new.edit', $this->v);
     }

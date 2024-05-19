@@ -53,7 +53,6 @@
                                                 <th scope="col">Ảnh</th>
                                                 <th scope="col">Tiêu đề</th>
                                                 <th scope="col">Danh mục</th>
-                                                <th scope="col">Người đăng</th>
                                                 <th scope="col">Nội dung ngắn</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
